@@ -88,7 +88,7 @@ public class DB {
         return resultSet;
     }
 
-    public int executeStatement(String statementStr) {
+    public int executeUpdateStatement(String statementStr) {
     int execution = 0; // Initialising the execution result with a default value
     try {
         statement = connection.createStatement();
@@ -100,6 +100,20 @@ public class DB {
 
     return execution; // Return the execution result
 }
+    public ResultSet executeStatement(String statementString){
+            Statement statement;
+            ResultSet result = null;
+            
+        try {
+            statement = connection.createStatement();
+            result = statement.executeQuery(statementString);
+        } catch (SQLException ex) {
+            Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+            
+        return result;
+    }
 
     public String processResultSet(ResultSet rs) {
         String temp = "";
@@ -147,7 +161,7 @@ public class DB {
             System.out.println(result);
 
             // Example usage of executeStatement
-            int rowsUpdated = db.executeStatement("UPDATE your_table SET column1 = 'New Value' WHERE condition");
+            int rowsUpdated = db.executeUpdateStatement("UPDATE your_table SET column1 = 'New Value' WHERE condition");
             System.out.println("Rows updated: " + rowsUpdated);
         } catch (Exception e) {
             e.printStackTrace();

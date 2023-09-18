@@ -24,7 +24,7 @@ public class LoginScrn extends javax.swing.JFrame {
             int nM = 0;
             LocalDate sD, eD;
             // Execute a SQL query to retrieve the user's information
-            String line = Competitor.db.processResultSet(Competitor.db.executeQuery("SELECT Username FROM CompetitorRegistrationInfo WHERE Username = " + inUser + ";"));
+            String line = Competitor.db.processResultSet(Competitor.db.executeStatement("SELECT Username FROM CompetitorRegistrationInfo WHERE Username = " + inUser + ";"));
             Scanner sc = new Scanner(line).useDelimiter("   ");
             id = sc.next();
             sNa = sc.next();
